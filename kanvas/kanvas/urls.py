@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from app.views import CanvasList, CanvasDetailView, CompanyDetailView
+from app.views import CanvasList, CanvasDetailView, CompanyDetailView, CanvasCreate
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^newcanvas/$', CanvasCreate.as_view()),
     url(r'^canvases/$', CanvasList.as_view()),
     url(r'^canvas/(?P<pk>[0-9]+)/$', CanvasDetailView.as_view(), name='canvas-detail'),
     url(r'^company/(?P<pk>[0-9]+)/$', CompanyDetailView.as_view(), name='company-detail'),
