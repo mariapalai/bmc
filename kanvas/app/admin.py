@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-from app.models import Canvas, Company
+from app.models import Canvas
 
-admin.site.register(Company)
 admin.site.register(Canvas)

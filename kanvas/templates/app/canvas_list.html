@@ -4,7 +4,7 @@
     <h2>List of canvas</h2>
     <ul>
         {% for canvas in object_list %}
-            <li>{{ canvas.name }}, <img src="{{ canvas.relatedcompany.logo.url }}"/>, {{ canvas.upvotes}} , {{ canvas.downvotes }}</li>
+            <li>{{ canvas.company }}, <img src="{{ canvas.logo.url }}"/>, {{ canvas.originalauthor}}, {{ canvas.upvotes}} , {{ canvas.downvotes }}</li>
         {% endfor %}
     </ul>
 {% endblock %}
