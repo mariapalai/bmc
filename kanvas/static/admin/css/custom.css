@@ -1,0 +1,7 @@
+form table tr th { text-align: left; }
+
+/* for app/canvas_detail.html */
+#bizcanvas {
+  table-layout: fixed;
+  word-wrap: break-word;
+}

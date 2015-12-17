@@ -9,7 +9,10 @@ RUN apt-get update -qq && apt-get install -qqy \
 		gcc build-essential \
 		sqlite3 libjpeg-dev zlib1g-dev \
 		python python-pip python2.7-dev python-imaging \
-	--no-install-recommends && rm -rf /var/lib/apt/lists/*
+	--no-install-recommends && rm -rf /var/lib/apt/lists/* \
+	npm install -g bower && npm install -g wiredep && npm install recess connect uglify-js jshint -g
+
+# bower install bootstrap#2.1.0 less#2.5.3
 
 # keep all non-RUN commands at the end
 VOLUME ["/kanvas"]

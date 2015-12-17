@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 
+{% block header %}
+    <title>{{ obj.company }}</title>
+{% endblock %}
+
 {% block content %}
     <ul>
-        <li>{{ object.name }}</li>
-        <li><img src="{{ object.logo.url }}"/></li>
+        <li>{{ obj.company }}</li>
+        <li><img src="{{ obj.logo.url }}"/></li>
+        <li>{{ obj.description }}</li>
     </ul>
 {% endblock %}
+

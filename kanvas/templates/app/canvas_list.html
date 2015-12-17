@@ -1,10 +1,27 @@
 {% extends "base.html" %}
 
+{% block header %}
+    <title>Business models</title>
+    <script src="/static/admin/js/canvas_list-michaelsoriano.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('ul.first').bsPhotoGallery({
+          "classes" : "col-lg-2 col-md-4 col-sm-3 col-xs-4 col-xxs-12",
+          "hasModal" : true
+        });
+      });
+    </script>
+    <link rel="stylesheet" href="/static/admin/css/canvas_list-michaelsoriano.css">
+{% endblock %}
+
 {% block content %}
-    <h2>List of canvas</h2>
-    <ul>
+    <div class="row" style="text-align:center; border-bottom:1px dashed #ccc;  padding:0 0 20px 0; margin-bottom:40px;"/>
+    <ul class="row first">
+        <li>
         {% for canvas in object_list %}
-            <li>{{ canvas.company }}, <img src="{{ canvas.logo.url }}"/>, {{ canvas.originalauthor}}, {{ canvas.upvotes}} , {{ canvas.downvotes }}</li>
+            <img src="{{ canvas.logo.url }}"/>
+            <div class="text">{{ canvas.company }} {{ canvas.originalauthor}}, {{ canvas.upvotes}} , {{ canvas.downvotes }}</div>
         {% endfor %}
+        </li>
     </ul>
 {% endblock %}

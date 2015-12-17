@@ -1,18 +1,60 @@
 {% extends "base.html" %}
 
+{% block header %}
+  <title>{{ object.company }}</title>
+  <link href="/static/admin/css/canvas_detail-desireco.css" rel="stylesheet">
+  <link href="/static/admin/css/custom.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Headland+One' rel='stylesheet' type='text/css'>
+  <script src="/static/admin/js/canvas_detail-desireco.js"></script>
+{% endblock %}
+
 {% block content %}
-    <ul>
-        <li>{{ object.name }}</li>
-        <li>{{ object.value_propositions }}</li>
-        <li>{{ object.customer_segments }}</li>
-        <li>{{ object.partners }}</li>
-        <li>{{ object.relationships }}</li>
-        <li>{{ object.channels }}</li>
-        <li>{{ object.activities }}</li>
-        <li>{{ object.resources }}</li>
-        <li>{{ object.revenue }}</li>
-        <li>{{ object.cost }}</li>
-        <li>{{ object.originalauthor }}</li>
-        <li>{{ object.relatedcompany }}</li>
-    </ul>
+  <h3>{{ object.company }} made by {{ object.originalauthor }}</h3>
+  <table id="bizcanvas" cellspacing="0" border="1">
+    <!-- Upper part -->
+    <tr>
+      <td colspan="2" rowspan="2">
+        <h4>Key Partners</h4>
+        <p>{{ object.partners }}</p>
+      </td>
+      <td colspan="2">
+        <h4>Key Activities</h4>
+        <p>{{ object.activities }}</p>
+      </td>
+      <td colspan="2" rowspan="2">
+        <h4>Value Proposition</h4>
+        <p>{{ object.value_propositions }}</p>
+      </td>
+      <td colspan="2">
+        <h4>Customer Relationship</h4>
+        <p>{{ object.relationships }}</p>
+      </td>
+      <td colspan="2" rowspan="2">
+        <h4>Customer Segments</h4>
+        <p>{{ object.customer_segments }}</p>
+      </td>
+    </tr>
+
+    <!-- Lower part -->
+    <tr>
+      <td colspan="2">
+        <h4>Key Resources</h4>
+        <p>{{ object.resources }}</p>
+      </td>
+      <td colspan="2">
+        <h4>Channels</h4>
+        <p>{{ object.channels }}</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5">
+        <h4>Cost Structure</h4>
+        <p>{{ object.cost }}</p>
+      </td>
+      <td colspan="5">
+        <h4>Revenue Streams</h4>
+        <p>{{ object.revenue }}</p>
+      </td>
+    </tr>
+  </table>
 {% endblock %}
