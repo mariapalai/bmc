@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404
 from django.shortcuts import render_to_response
-
+from app.forms import CanvasForm
 
 def company(request, pk):
     try:
@@ -25,9 +25,7 @@ class CanvasDetailView(DetailView):
 
 class CanvasCreate(CreateView):
     model = Canvas
-    fields = ['company','value_propositions','customer_segments',
-              'partners','relationships','channels','activities',
-              'resources','revenue','cost', 'description', 'logo']
+    form_class = CanvasForm
 
 
 class CanvasUpdate(UpdateView):

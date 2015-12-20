@@ -20,6 +20,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    url(r'^tinymce/', include('tinymce.urls')),
+
     url(r'^canvases/$', CanvasList.as_view(), name='canvas-list'),
     url(r'^canvas/(?P<pk>[0-9]+)/$', CanvasDetailView.as_view(), name='canvas-detail'),
     url(r'^company/(?P<pk>[0-9]+)/$', company, name='canvas-detail'),
@@ -28,4 +30,5 @@ urlpatterns = [
     url(r'canvas/(?P<pk>[0-9]+)/delete/$', CanvasDelete.as_view(), name='canvas-delete'),
 
     url(r'^admin/', include(admin.site.urls)),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

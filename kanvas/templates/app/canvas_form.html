@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block header %}
+    <script type="text/javascript" src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+{% endblock %}
+
 {% block content %}
 <form action="" method="post">{% csrf_token %}
     <table>
