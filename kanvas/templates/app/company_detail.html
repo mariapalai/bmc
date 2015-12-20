@@ -2,13 +2,76 @@
 
 {% block header %}
     <title>{{ obj.company }}</title>
+    <script>
+      $(document).ready(function(){
+          $('#testBtn').click(function () {
+            var cnt=4;
+            var btn = $(this);
+            btn.button('loading');
+            setTimeout(function () {
+                cnt++;
+                btn.button('reset');
+                btn.text('  ' + cnt);
+            }, 1000);
+         });
+
+        $('#testBtnDown').click(function () {
+            var cnt=4;
+            var btn = $(this);
+            btn.button('loading');
+            setTimeout(function () {
+                if (cnt > 0) {
+                    cnt--;
+                }
+                btn.button('reset');
+                btn.text('  ' + cnt);
+            }, 1000);
+         });
+        });
+    </script>
 {% endblock %}
 
 {% block content %}
-    <ul>
-        <li>{{ obj.company }}</li>
-        <li><img src="{{ obj.logo.url }}"/></li>
-        <li>{{ obj.description }}</li>
-    </ul>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12" style="margin-top:10px;">
+            <ul class="media-list">
+              <li class="media">
+                <a class="pull-left" href="#"><img class="media-object" src="{{ obj.logo.url }}"></a>
+                <!-- might remove hegith and width -->
+                <div class="media-body">
+                  <h3 class="media-heading">{{ obj.company }}</h3>
+                  <!-- start of voting buttons -->
+                  <button type="button" id="testBtn" class="btn btn-success glyphicon glyphicon-thumbs-up" data-loading-text="ajax-call-to-increase-vote">{{ obj.upvotes }}</button>
+                  <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down" data-loading-text="ajax-call-to-decrease-vote">{{ obj.downvotes }}</button>
+                  <!-- end of voting buttons -->
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <!-- starts block content -->
+      <h3>Description</h3>
+      <p>{{ obj.description }}</p>
+      <h3>Products</h3>
+      <p>{{ obj.products }}</p>
+      <h3>Link</h3>
+      <!-- {{ obj.links }} -->
+      <ul>
+        <li>http...</li>
+        <!-- editable only here -->
+      </ul>
+      <!-- stops block content -->
+    </div>
+    <div id="footer-container">
+      <hr>
+      <footer>
+        <p>© EPU 2016</p>
+      </footer>
+    </div>
 {% endblock %}
 

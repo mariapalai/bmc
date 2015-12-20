@@ -3,25 +3,50 @@
 {% block header %}
     <title>Business models</title>
     <script src="/static/admin/js/canvas_list-michaelsoriano.js"></script>
-    <script>
-      $(document).ready(function(){
-        $('ul.first').bsPhotoGallery({
-          "classes" : "col-lg-2 col-md-4 col-sm-3 col-xs-4 col-xxs-12",
-          "hasModal" : true
-        });
-      });
-    </script>
     <link rel="stylesheet" href="/static/admin/css/canvas_list-michaelsoriano.css">
 {% endblock %}
 
 {% block content %}
-    <div class="row" style="text-align:center; border-bottom:1px dashed #ccc;  padding:0 0 20px 0; margin-bottom:40px;"/>
-    <ul class="row first">
-        <li>
-        {% for canvas in object_list %}
-            <img src="{{ canvas.logo.url }}"/>
-            <div class="text">{{ canvas.company }} {{ canvas.originalauthor}}, {{ canvas.upvotes}} , {{ canvas.downvotes }}</div>
-        {% endfor %}
-        </li>
-    </ul>
+    <div class="row" style="text-align:center; border-bottom:1px dashed #ccc; padding:0 0 20px 0; margin-bottom:40px;">
+        <div class="col-md-12" style="margin-top:10px;">
+          <div class="row">
+            <div class="col-md-6 text-left">
+              <div class="col-md-12">Welcome! Create your canvas</div>
+            </div>
+            <div class="col-md-6 text-right">
+              <div class="col-md-12">
+                <a class="btn btn-primary">New canvas</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ul class="row first">
+            {% for canvas in object_list %}
+            <!--
+                if you add the class bspHasModal below, then add also the following javascript
+                $('ul.first').bsPhotoGallery({
+                  "classes" : "col-lg-2 col-md-4 col-sm-3 col-xs-4 col-xxs-12",
+                  "hasModal" : true
+                });
+                -->
+                <li class="col-lg-2 col-md-4 col-sm-3 col-xs-4 col-xxs-12" data-bsp-li-index="0">
+                    <img src="{{ canvas.logo.url }}" class="img-responsive">
+                    <div class="text">
+                      <div class="section">
+                        <h3 style="padding: 0px; margin: 0px;">{{ canvas.company }}</h3>
+                      </div>
+                      <div class="section">
+                          <a href="/canvas/{{ canvas.id }}">
+                              view canvas of {{ canvas.originalauthor}}
+                          </a>
+                      </div>
+                      <div class="section text-right">
+                        <span class="glyphicon glyphicon-thumbs-up">{{ canvas.upvotes}}</span>
+                        <span class="glyphicon glyphicon-thumbs-down">{{ canvas.downvotes}}</span>
+                      </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

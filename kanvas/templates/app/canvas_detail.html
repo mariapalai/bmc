@@ -10,51 +10,64 @@
 
 {% block content %}
   <h3>{{ object.company }} made by {{ object.originalauthor }}</h3>
-  <table id="bizcanvas" cellspacing="0" border="1">
-    <!-- Upper part -->
-    <tr>
-      <td colspan="2" rowspan="2">
-        <h4>Key Partners</h4>
-        <p>{{ object.partners }}</p>
-      </td>
-      <td colspan="2">
-        <h4>Key Activities</h4>
-        <p>{{ object.activities }}</p>
-      </td>
-      <td colspan="2" rowspan="2">
-        <h4>Value Proposition</h4>
-        <p>{{ object.value_propositions }}</p>
-      </td>
-      <td colspan="2">
-        <h4>Customer Relationship</h4>
-        <p>{{ object.relationships }}</p>
-      </td>
-      <td colspan="2" rowspan="2">
-        <h4>Customer Segments</h4>
-        <p>{{ object.customer_segments }}</p>
-      </td>
-    </tr>
-
-    <!-- Lower part -->
-    <tr>
-      <td colspan="2">
-        <h4>Key Resources</h4>
-        <p>{{ object.resources }}</p>
-      </td>
-      <td colspan="2">
-        <h4>Channels</h4>
-        <p>{{ object.channels }}</p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="5">
-        <h4>Cost Structure</h4>
-        <p>{{ object.cost }}</p>
-      </td>
-      <td colspan="5">
-        <h4>Revenue Streams</h4>
-        <p>{{ object.revenue }}</p>
-      </td>
-    </tr>
-  </table>
+      <table id="bizcanvas" cellspacing="0" border="1">
+        <!-- Upper part -->
+        <tbody>
+          <tr>
+            <td colspan="2" rowspan="2">
+              <h4>Key Partners</h4>
+              <p>{{ object.partners }}</p>
+            </td>
+            <td colspan="2">
+              <h4>Key Activities</h4>
+              <p>{{ object.activities }}</p>
+            </td>
+            <td colspan="2" rowspan="2">
+              <h4>Value Proposition</h4>
+              <p>{{ object.value_propositions }}</p>
+            </td>
+            <td colspan="2">
+              <h4>Customer Relationship</h4>
+              <p>{{ object.relationships }}</p>
+            </td>
+            <td colspan="2" rowspan="2">
+              <h4>Customer Segments</h4>
+              <p>{{ object.customer_segments }}</p>
+            </td>
+          </tr>
+          <!-- Lower part -->
+          <tr>
+            <td colspan="2">
+              <h4>Key Resources</h4>
+              <p>{{ object.resources }}</p>
+            </td>
+            <td colspan="2">
+              <h4>Channels</h4>
+              <p>{{ object.channels }}</p>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5">
+              <h4>Cost Structure</h4>
+              <p>{{ object.cost }}</p>
+            </td>
+            <td colspan="5">
+              <h4>Revenue Streams</h4>
+              <p>{{ object.revenue }}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="col-md-12" style="margin-top:10px;">
+        <div class="row">
+          <div class="col-md-6 text-left">
+            <a class="btn btn-primary">More info</a>
+          </div>
+          <div class="col-md-6 text-right">
+            <div class="col-md-12">
+              <a class="btn btn-primary">Edit canvas</a>
+            </div>
+          </div>
+        </div>
+      </div>
 {% endblock %}
