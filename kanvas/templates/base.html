@@ -43,8 +43,12 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 			  <div class="navbar-right">
-				<a href="#" style="color: white; padding-right: 0.5cm;">Login</a>
-				<button type="button" class="btn btn-success-outline">Signup</button>
+				  {% if request.user.is_authenticated %}
+				  	<a href="{% url "account_logout" %}" class="btn btn-default">Logout</a>
+				  {% else %}
+					<a href="{% url "account_login" %}" style="color: white; padding-right: 0.5cm;">Login</a>
+					<a href="{% url "account_signup" %}" class="btn btn-default">Signup</a>
+				  {% endif %}
 			  </div>
 			</div>
 		  </div>

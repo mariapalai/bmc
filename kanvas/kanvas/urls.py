@@ -20,6 +20,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    url(r'^accounts/', include('allauth.urls')),
+
     url(r'^tinymce/', include('tinymce.urls')),
 
     url(r'^canvases/$', CanvasList.as_view(), name='canvas-list'),
