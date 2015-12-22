@@ -8,7 +8,7 @@ import tinymce.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0008_auto_20151220_1540'),
+        ('app', '0007_remove_canvas_name'),
     ]
 
     operations = [
