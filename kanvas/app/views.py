@@ -10,7 +10,7 @@ from app.forms import CanvasForm
 
 def company(request, pk):
     """
-    This is function and not a generic view as it point to a different template from canvas_detail
+    This is function and not a generic view as it points to a different template from canvas_detail with less fields
     :param request:
     :param pk: primary key of Canvas as a named group of a regular expression at urls
     :return:
@@ -22,9 +22,9 @@ def company(request, pk):
     return render_to_response('app/company_detail.html', {'obj': obj})
 
 
-def updateField(request, pk, field):
+def update_field(request, pk, field):
     """
-
+    This is function and not a CreateView/Update as it points to a template with less fields
     :param request:
     :param pk: primary key of Canvas
     :param field: which field to update
@@ -42,17 +42,32 @@ def updateField(request, pk, field):
     return render(request, 'app/canvas_form.html', {'form': form[field]})
 
 
+def create_canvas(request):
+    """
+    This is function and not a CreateView/Update as it points to a template with less fields
+    :param request:
+    :param pk: primary key of Canvas
+    :param field: which field to update
+    :return:
+    """
+    if request.method == 'POST':
+        form = CanvasForm(request.POST)
+        if form.is_valid():
+            # process the data in form.cleaned_data as required TODO: set originalauthor
+            # ...
+            return HttpResponseRedirect('/canvases/')
+    else:
+        form = CanvasForm() # blank form
+
+    return render(request, 'app/canvas_new.html', {'company': form['company'],'description': form['description'],'logo': form['logo']})
+
+
 class CanvasList(ListView):
     model = Canvas
 
 
 class CanvasDetailView(DetailView):
     model = Canvas
-
-
-class CanvasCreate(CreateView):
-    model = Canvas
-    form_class = CanvasForm
 
 
 class CanvasDelete(DeleteView):

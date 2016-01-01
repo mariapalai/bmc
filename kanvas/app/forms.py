@@ -5,9 +5,10 @@ from app.models import Canvas
 class CanvasForm(forms.ModelForm):
     class Meta:
         model = Canvas
-        fields = ['company','value_propositions','customer_segments',
-              'partners','relationships','channels','activities',
-              'resources','revenue','cost', 'description', 'logo']
+        fields = ['company','description','logo',
+        'value_propositions','customer_segments',
+        'partners','relationships','channels','activities',
+        'resources','revenue','cost']
         dim = {'rows':4, 'cols':150}
         widgets = {
             'value_propositions': forms.Textarea(attrs=dim),
@@ -19,5 +20,4 @@ class CanvasForm(forms.ModelForm):
             'resources': forms.Textarea(attrs=dim),
             'revenue': forms.Textarea(attrs=dim),
             'cost': forms.Textarea(attrs=dim),
-            'description': forms.Textarea(attrs=dim),
         }

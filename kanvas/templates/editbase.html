@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+<!-- You can extend the blocks: formblock -->
+{% block header %}
+    <script type="text/javascript" src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+{% endblock %}
+
+{% block content %}
+
+<form action="" method="post">{% csrf_token %}
+    {% block formblock %}{% formblock %}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}
