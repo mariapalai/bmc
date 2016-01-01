@@ -6,8 +6,12 @@ form table tr th { text-align: left; }
   table-layout: fixed;
   word-wrap: break-word;
 }
+#bizcanvas tbody tr td:hover {
+  background-color: #ffff99;
+}
 /* the above prevents horizontal scrolling */
 #bizcanvas td {
   height: 100px;
 }
 /* the above prevents vertical scrolling at empty canvas */
+
