@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from app.forms import CanvasForm
-
+from django.contrib.auth.decorators import login_required, permission_required
 
 def company(request, pk):
     """
@@ -42,7 +42,7 @@ def update_field(request, pk, field):
 
     return render(request, 'app/canvas_form.html', {'form': form[field]})
 
-
+@login_required
 def create_canvas(request):
     """
     This is function and not a CreateView/Update as it points to a template with less fields
@@ -54,8 +54,8 @@ def create_canvas(request):
     if request.method == 'POST':
         form = CanvasForm(request.POST)
         if form.is_valid():
-            # process the data in form.cleaned_data as required TODO: set originalauthor
-            # ...
+            form.cleaned_data['originalauthor'] = request.user
+            o = Canvas.objects.create(**form.cleaned_data)
             return HttpResponseRedirect('/canvases/')
     else:
         form = CanvasForm() # blank form
