@@ -8,7 +8,7 @@
 {% block content %}
 
 <form action="" method="post">{% csrf_token %}
-    {% block formblock %}{% formblock %}
+    {% block formblock %}{% endblock %}
     <input type="submit" value="Submit" />
 </form>
 {% endblock %}

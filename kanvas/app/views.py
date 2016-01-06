@@ -21,7 +21,7 @@ def company(request, pk):
         raise Http404("Canvas does not exist")
     return render_to_response('app/company_detail.html', {'obj': obj})
 
-
+# @requires_login
 def update_field(request, pk, field):
     """
     This is function and not a CreateView/Update as it points to a template with less fields
@@ -35,6 +35,7 @@ def update_field(request, pk, field):
         if form.is_valid():
             # process the data in form.cleaned_data as required
             # ...
+            # only the original_author
             return HttpResponseRedirect('/canvases/')
     else:
         form = CanvasForm() # blank form

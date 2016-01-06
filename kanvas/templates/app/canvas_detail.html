@@ -16,44 +16,44 @@
           <tr>
             <td colspan="2" rowspan="2">
               <h4>Key Partners</h4>
-              <p>{{ object.partners }}</p>
+              <div>{{ object.partners | safe }}</div>
             </td>
             <td colspan="2">
               <h4>Key Activities</h4>
-              <p>{{ object.activities }}</p>
+              <div>{{ object.activities | safe }}</div>
             </td>
             <td colspan="2" rowspan="2">
               <h4>Value Proposition</h4>
-              <p>{{ object.value_propositions }}</p>
+              <div>{{ object.value_propositions | safe }}</div>
             </td>
             <td colspan="2">
               <h4>Customer Relationship</h4>
-              <p>{{ object.relationships }}</p>
+              <div>{{ object.relationships | safe }}</div>
             </td>
             <td colspan="2" rowspan="2">
               <h4>Customer Segments</h4>
-              <p>{{ object.customer_segments }}</p>
+              <div>{{ object.customer_segments | safe }}</div>
             </td>
           </tr>
           <!-- Lower part -->
           <tr>
             <td colspan="2">
               <h4>Key Resources</h4>
-              <p>{{ object.resources }}</p>
+              <div>{{ object.resources | safe }}</div>
             </td>
             <td colspan="2">
               <h4>Channels</h4>
-              <p>{{ object.channels }}</p>
+              <div>{{ object.channels | safe }}</div>
             </td>
           </tr>
           <tr>
             <td colspan="5">
               <h4>Cost Structure</h4>
-              <p>{{ object.cost }}</p>
+              <div>{{ object.cost | safe }}</div>
             </td>
             <td colspan="5">
               <h4>Revenue Streams</h4>
-              <p>{{ object.revenue }}</p>
+              <div>{{ object.revenue | safe }}</div>
             </td>
           </tr>
         </tbody>
