@@ -15,45 +15,45 @@
         <tbody>
           <tr>
             <td colspan="2" rowspan="2">
-              <h4>Key Partners</h4>
-              <div>{{ object.partners | safe }}</div>
+              <a href="/canvas/{{ canvas.id }}/partners">Key Partners</a>
+              <div class="acefield">{{ object.partners | safe }}</div>
             </td>
             <td colspan="2">
-              <h4>Key Activities</h4>
-              <div>{{ object.activities | safe }}</div>
+              <a href="/canvas/{{ canvas.id }}/activities">Key Activities</a>
+              <div class="acefield">{{ object.activities | safe }}</div>
             </td>
             <td colspan="2" rowspan="2">
-              <h4>Value Proposition</h4>
-              <div>{{ object.value_propositions | safe }}</div>
+              <a href="/canvas/{{ canvas.id }}/value_propositions">Value Proposition</a>
+              <div class="acefield">{{ object.value_propositions | safe }}</div>
             </td>
             <td colspan="2">
-              <h4>Customer Relationship</h4>
-              <div>{{ object.relationships | safe }}</div>
+              <a href="/canvas/{{ canvas.id }}/relationships">Customer Relationship</a>
+              <div class="acefield">{{ object.relationships | safe }}</div>
             </td>
             <td colspan="2" rowspan="2">
-              <h4>Customer Segments</h4>
-              <div>{{ object.customer_segments | safe }}</div>
+              <a href="/canvas/{{ canvas.id }}/customer_segments">Customer Segments</a>
+              <div class="acefield">{{ object.customer_segments | safe }}</div>
             </td>
           </tr>
           <!-- Lower part -->
           <tr>
             <td colspan="2">
-              <h4>Key Resources</h4>
-              <div>{{ object.resources | safe }}</div>
+              <a href="/canvas/{{ canvas.id }}/resources">Key Resources</a>
+              <div class="acefield">{{ object.resources | safe }}</div>
             </td>
             <td colspan="2">
-              <h4>Channels</h4>
-              <div>{{ object.channels | safe }}</div>
+              <a href="/canvas/{{ canvas.id }}/channels">Key Channels</a>
+              <div class="acefield">{{ object.channels | safe }}</div>
             </td>
           </tr>
           <tr>
             <td colspan="5">
-              <h4>Cost Structure</h4>
-              <div>{{ object.cost | safe }}</div>
+              <a href="/canvas/{{ canvas.id }}/cost">Cost Structure</a>
+              <div class="acefield">{{ object.cost | safe }}</div>
             </td>
             <td colspan="5">
-              <h4>Revenue Streams</h4>
-              <div>{{ object.revenue | safe }}</div>
+              <a href="/canvas/{{ canvas.id }}/cost">Revenue Streams</a>
+              <div class="acefield">{{ object.revenue | safe }}</div>
             </td>
           </tr>
         </tbody>
@@ -61,11 +61,11 @@
       <div class="col-md-12" style="margin-top:10px;">
         <div class="row">
           <div class="col-md-6 text-left">
-            <a class="btn btn-primary">More info</a>
+            <a href="/company/{{ canvas.id }}" class="btn btn-primary">More info</a>
           </div>
           <div class="col-md-6 text-right">
             <div class="col-md-12">
-              <a class="btn btn-primary">Edit canvas</a>
+              <!-- <a class="btn btn-primary">Edit canvas</a> -->
             </div>
           </div>
         </div>

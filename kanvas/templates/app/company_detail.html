@@ -38,7 +38,9 @@
           <div class="col-md-12" style="margin-top:10px;">
             <ul class="media-list">
               <li class="media">
-                <a class="pull-left" href="#"><img class="media-object" src="{{ obj.logo.url }}"></a>
+                <a class="pull-left" href="/canvas/{{ obj.id }}/logo">
+                    <img class="media-object" src="{{ obj.logo.url }}">
+                </a>
                 <!-- might remove hegith and width -->
                 <div class="media-body">
                   <h3 class="media-heading">{{ obj.company }}</h3>
@@ -55,16 +57,12 @@
     </div>
     <div class="container">
       <!-- starts block content -->
-      <h3>Description</h3>
-      <p>{{ obj.description }}</p>
-      <h3>Products</h3>
-      <p>{{ obj.products }}</p>
-      <h3>Link</h3>
-      <!-- {{ obj.links }} -->
-      <ul>
-        <li>http...</li>
-        <!-- editable only here -->
-      </ul>
+        <a href="/canvas/{{ obj.id }}/description"><h4>Description</h4></a>
+        <div class="acefield">{{ obj.description | safe }}</div>
+        <a href="/canvas/{{ obj.id }}/products"><h4>Products</h4></a>
+        <div class="acefield">{{ obj.products | safe }}</div>
+        <a href="/canvas/{{ obj.id }}/links"><h4>Links</h4></a>
+        <div class="acefield">{{ obj.links | safe }}</div>
       <!-- stops block content -->
     </div>
     <div id="footer-container">

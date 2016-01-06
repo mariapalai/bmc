@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-6 text-right">
               <div class="col-md-12">
-                <a class="btn btn-primary" href="/login">New canvas</a>
+                <a class="btn btn-primary" href="/canvas/add">New canvas</a>
               </div>
             </div>
           </div>
@@ -30,7 +30,9 @@
                 });
                 -->
                 <li class="col-lg-2 col-md-4 col-sm-3 col-xs-4 col-xxs-12" data-bsp-li-index="0">
-                    <img src="{{ canvas.logo.url }}" class="img-responsive">
+                    <a href="/canvas/{{ canvas.id }}">
+                        <img src="{{ canvas.logo.url }}" class="img-responsive">
+                    </a>
                     <div class="text">
                       <div class="section">
                         <h3 style="padding: 0px; margin: 0px;">{{ canvas.company }}</h3>

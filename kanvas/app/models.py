@@ -20,6 +20,9 @@ class Canvas(models.Model):
 
     description = models.TextField(blank=True)
     logo = models.ImageField(upload_to='documents/%Y/%m/%d', default='/media/default-logo.png')
+    products = models.TextField(blank=True)
+    links = models.TextField(blank=True)
+
 
     def get_absolute_url(self):
         return "/canvas/%i/" % self.id

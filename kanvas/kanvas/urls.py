@@ -24,11 +24,11 @@ urlpatterns = [
 
     url(r'^tinymce/', include('tinymce.urls')),
 
-    url(r'^canvases/$', CanvasList.as_view(), name='canvas-list'),
+    url(r'^$', CanvasList.as_view(), name='canvas-list'),
     url(r'^canvas/(?P<pk>[0-9]+)/$', CanvasDetailView.as_view(), name='canvas-detail'),
-    url(r'^company/(?P<pk>[0-9]+)/$', company, name='canvas-detail'),
+    url(r'^company/(?P<pk>[0-9]+)/$', company, name='company-detail'),
     url(r'canvas/add/$', create_canvas, name='canvas-add'),
-    url(r'canvas/(?P<pk>[0-9]+)/(?P<field>[a-z]+)/$', update_field, name='canvas-update'),
+    url(r'canvas/(?P<pk>[0-9]+)/(?P<field>.+)/$', update_field, name='canvas-update'),
     url(r'canvas/(?P<pk>[0-9]+)/delete/$', CanvasDelete.as_view(), name='canvas-delete'),
 
     url(r'^admin/', include(admin.site.urls)),

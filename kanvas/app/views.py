@@ -46,7 +46,7 @@ def update_field(request, pk, field):
                 obj.save()
                 return HttpResponseRedirect('/canvas/'+pk)
             else:
-                raise Http404("Only the author can update a canvas")
+                return HttpResponseRedirect('/login/')
     else:
         form = CanvasForm() # blank form
 
