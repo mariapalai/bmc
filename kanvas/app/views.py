@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from app.models import Canvas
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from app.forms import CanvasForm
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
+from django.forms import modelform_factory, Textarea
 
 def company(request, pk):
     """
@@ -21,7 +22,7 @@ def company(request, pk):
         raise Http404("Canvas does not exist")
     return render_to_response('app/company_detail.html', {'obj': obj})
 
-# @requires_login
+@login_required
 def update_field(request, pk, field):
     """
     This is function and not a CreateView/Update as it points to a template with less fields
@@ -30,17 +31,25 @@ def update_field(request, pk, field):
     :param field: which field to update
     :return:
     """
+    CanvasForm = modelform_factory(Canvas, fields=(field,), widgets={
+        field: Textarea(attrs={'rows':4, 'cols':150})
+    })
     if request.method == 'POST':
         form = CanvasForm(request.POST)
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # only the original_author
-            return HttpResponseRedirect('/canvases/')
+            obj = Canvas.objects.get(id=pk)
+            if obj.originalauthor == request.user: # more maintainable than dfunckt/django-rules
+                setattr(obj, field, form.cleaned_data[field])
+                obj.save()
+                return HttpResponseRedirect('/canvas/'+pk)
+            else:
+                return HttpResponseRedirect('/canvases/') # only authors can update fields
+        else:
+            x=1
     else:
         form = CanvasForm() # blank form
 
-    return render(request, 'app/canvas_form.html', {'form': form[field]})
+    return render(request, 'app/canvas_form.html', {'formfield': form})
 
 @login_required
 def create_canvas(request):
@@ -55,8 +64,8 @@ def create_canvas(request):
         form = CanvasForm(request.POST)
         if form.is_valid():
             form.cleaned_data['originalauthor'] = request.user
-            o = Canvas.objects.create(**form.cleaned_data)
-            return HttpResponseRedirect('/canvases/')
+            obj = Canvas.objects.create(**form.cleaned_data)
+            return HttpResponseRedirect("/canvas/%d" % obj.id)
     else:
         form = CanvasForm() # blank form
 
