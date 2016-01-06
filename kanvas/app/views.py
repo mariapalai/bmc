@@ -7,7 +7,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from app.forms import CanvasForm
 from django.contrib.auth.decorators import login_required
-from django.forms import modelform_factory, Textarea
+from django.forms import modelform_factory, Textarea, ClearableFileInput
 
 def company(request, pk):
     """
@@ -31,9 +31,12 @@ def update_field(request, pk, field):
     :param field: which field to update
     :return:
     """
-    CanvasForm = modelform_factory(Canvas, fields=(field,), widgets={
-        field: Textarea(attrs={'rows':4, 'cols':150})
-    })
+    widgets = {}
+    if field=='logo':
+        widgets[field] = ClearableFileInput()
+    else:
+        widgets[field] = Textarea(attrs={'rows':4, 'cols':150})
+    CanvasForm = modelform_factory(Canvas, fields=(field,), widgets=widgets)
     if request.method == 'POST':
         form = CanvasForm(request.POST)
         if form.is_valid():
@@ -43,9 +46,7 @@ def update_field(request, pk, field):
                 obj.save()
                 return HttpResponseRedirect('/canvas/'+pk)
             else:
-                return HttpResponseRedirect('/canvases/') # only authors can update fields
-        else:
-            x=1
+                raise Http404("Only the author can update a canvas")
     else:
         form = CanvasForm() # blank form
 
