@@ -3,6 +3,7 @@
 {% block header %}
     <title>Business models</title>
     <script src="/static/admin/js/canvas_list-michaelsoriano.js"></script>
+    <script src="/static/admin/js/canvas_list-michaelsoriano.js"></script>
     <link rel="stylesheet" href="/static/admin/css/canvas_list-michaelsoriano.css">
 {% endblock %}
 
@@ -43,8 +44,13 @@
                           </a>
                       </div>
                       <div class="section text-right">
-                        <span class="glyphicon glyphicon-thumbs-up">{{ canvas.upvotes}}</span>
-                        <span class="glyphicon glyphicon-thumbs-down">{{ canvas.downvotes}}</span>
+                          <!-- TODO: https://github.com/linkfloyd/qhonuskan-votes -->
+                          <button type="button"
+                                  class="btn btn-success glyphicon glyphicon-thumbs-up"
+                                  data-canvas-id="{{ canvas.id }}">{{ canvas.upvotes}}</button>
+                          <button type="button"
+                                  class="btn btn-success glyphicon glyphicon-thumbs-down"
+                                  data-canvas-id="{{ canvas.id }}">{{ canvas.downvotes}}</button>
                       </div>
                     </div>
                 </li>

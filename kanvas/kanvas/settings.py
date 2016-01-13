@@ -48,7 +48,7 @@ INSTALLED_APPS = (
 
 SITE_ID = 1
 # for SSO, LOGIN_REDIRECT_URL is a simpler approach than the GET parameter 'next'
-LOGIN_REDIRECT_URL = "/canvases"
+LOGIN_REDIRECT_URL = "/"
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',

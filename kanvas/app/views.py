@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView
 from app.models import Canvas
 from django.views.generic.edit import DeleteView
 from django.core.urlresolvers import reverse_lazy
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from app.forms import CanvasForm
 from django.contrib.auth.decorators import login_required
@@ -48,9 +48,39 @@ def update_field(request, pk, field):
             else:
                 return HttpResponseRedirect('/login/')
     else:
-        form = CanvasForm() # blank form
+        form = CanvasForm(instance = Canvas.objects.get(id=pk))
 
     return render(request, 'app/canvas_form.html', {'formfield': form})
+
+
+def voteup(request, pk):
+    """
+    This is function and not a CreateView/Update as it points to a template with less fields
+    :param request:
+    :param pk: primary key of Canvas
+    :param field: which field to update
+    :return:
+    """
+    obj = Canvas.objects.get(id=pk)
+    if request.user.is_authenticated(): # decorator login_required would redirect
+        obj.upvotes = obj.upvotes + 1
+        obj.save()
+    return HttpResponse(obj.upvotes) # necessary for AJAX
+
+
+def votedown(request, pk):
+    """
+    This is function and not a CreateView/Update as it points to a template with less fields
+    :param request:
+    :param pk: primary key of Canvas
+    :param field: which field to update
+    :return:
+    """
+    obj = Canvas.objects.get(id=pk)
+    if request.user.is_authenticated(): # decorator login_required would redirect
+        obj.downvotes = obj.downvotes + 1
+        obj.save()
+    return HttpResponse(obj.downvotes)
 
 @login_required
 def create_canvas(request):

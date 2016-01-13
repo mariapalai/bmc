@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from app.views import CanvasList, CanvasDetailView, CanvasDelete, company, update_field, create_canvas
+from app.views import CanvasList, CanvasDetailView, CanvasDelete, company, update_field, create_canvas, voteup, votedown
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -28,6 +28,8 @@ urlpatterns = [
     url(r'^canvas/(?P<pk>[0-9]+)/$', CanvasDetailView.as_view(), name='canvas-detail'),
     url(r'^company/(?P<pk>[0-9]+)/$', company, name='company-detail'),
     url(r'canvas/add/$', create_canvas, name='canvas-add'),
+    url(r'canvas/up/(?P<pk>[0-9]+)/$', voteup, name='canvas-up'),
+    url(r'canvas/down/(?P<pk>[0-9]+)/$', votedown, name='canvas-down'),
     url(r'canvas/(?P<pk>[0-9]+)/(?P<field>.+)/$', update_field, name='canvas-update'),
     url(r'canvas/(?P<pk>[0-9]+)/delete/$', CanvasDelete.as_view(), name='canvas-delete'),
 
