@@ -19,7 +19,7 @@ class Canvas(models.Model):
     cost = models.TextField(blank=True)
 
     description = models.TextField(blank=True)
-    logo = models.ImageField(upload_to='documents/%Y/%m/%d', default='/media/default-logo.png')
+    logo = models.ImageField(upload_to='documents/%Y/%m/%d', default='/media/ntua-logo.gif')
     products = models.TextField(blank=True)
     links = models.TextField(blank=True)
 
