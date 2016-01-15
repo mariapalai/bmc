@@ -14,6 +14,8 @@ python manage.py migrate
 python manage.py runserver 
 visit: https://kanvas-mariapalai.c9users.io
 
+Sending email is enabled with the following instructions:
+https://support.google.com/accounts/answer/6010255
 
 To visualize dependencies between kanvas modules and django modules, install snakefood and type:
 sfood -I migrations . | sfood-graph | dot -Tsvg > x.svg

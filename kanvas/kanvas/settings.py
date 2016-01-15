@@ -136,3 +136,11 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 TINYMCE_SPELLCHECKER = True
 TINYMCE_COMPRESSOR = True
+
+# for singup
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'maria.palai.ntua@gmail.com'
+EMAIL_HOST_PASSWORD = 'panteleimonas'
+EMAIL_PORT = 587
+EMAIL_SUBJECT_PREFIX='EPU NTUA'
