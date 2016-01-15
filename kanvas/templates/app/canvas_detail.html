@@ -15,44 +15,61 @@
         <tbody>
           <tr>
             <td colspan="2" rowspan="2">
-              <a href="/canvas/{{ canvas.id }}/partners">Key Partners</a>
+              {% if object.originalauthor == request.user %}<a href="/canvas/{{ canvas.id }}/partners">{% endif %}
+                Key Partners
+              {% if object.originalauthor == request.user %}</a>{% endif %}
               <div class="acefield">{{ object.partners | safe }}</div>
             </td>
             <td colspan="2">
-              <a href="/canvas/{{ canvas.id }}/activities">Key Activities</a>
+              {% if object.originalauthor == request.user %}<a href="/canvas/{{ canvas.id }}/activities">{% endif %}
+              Key Activities
+              {% if object.originalauthor == request.user %}</a>{% endif %}
               <div class="acefield">{{ object.activities | safe }}</div>
             </td>
             <td colspan="2" rowspan="2">
-              <a href="/canvas/{{ canvas.id }}/value_propositions">Value Proposition</a>
+              {% if object.originalauthor == request.user %}<a href="/canvas/{{ canvas.id }}/value_propositions">{% endif %}
+              Value Proposition
+              {% if object.originalauthor == request.user %}</a>{% endif %}
               <div class="acefield">{{ object.value_propositions | safe }}</div>
             </td>
             <td colspan="2">
-              <a href="/canvas/{{ canvas.id }}/relationships">Customer Relationship</a>
+              {% if object.originalauthor == request.user %}<a href="/canvas/{{ canvas.id }}/relationships">{% endif %}
+              Customer Relationship</a>
               <div class="acefield">{{ object.relationships | safe }}</div>
             </td>
             <td colspan="2" rowspan="2">
-              <a href="/canvas/{{ canvas.id }}/customer_segments">Customer Segments</a>
+              {% if object.originalauthor == request.user %}<a href="/canvas/{{ canvas.id }}/customer_segments">{% endif %}
+              Customer Segments
+              {% if object.originalauthor == request.user %}</a>{% endif %}
               <div class="acefield">{{ object.customer_segments | safe }}</div>
             </td>
           </tr>
           <!-- Lower part -->
           <tr>
             <td colspan="2">
-              <a href="/canvas/{{ canvas.id }}/resources">Key Resources</a>
+              {% if object.originalauthor == request.user %}<a href="/canvas/{{ canvas.id }}/resources">{% endif %}
+              Key Resources
+              {% if object.originalauthor == request.user %}</a>{% endif %}
               <div class="acefield">{{ object.resources | safe }}</div>
             </td>
             <td colspan="2">
-              <a href="/canvas/{{ canvas.id }}/channels">Key Channels</a>
+              {% if object.originalauthor == request.user %}<a href="/canvas/{{ canvas.id }}/channels">{% endif %}
+              Key Channels
+              {% if object.originalauthor == request.user %}</a>{% endif %}
               <div class="acefield">{{ object.channels | safe }}</div>
             </td>
           </tr>
           <tr>
             <td colspan="5">
-              <a href="/canvas/{{ canvas.id }}/cost">Cost Structure</a>
+              {% if object.originalauthor == request.user %}<a href="/canvas/{{ canvas.id }}/cost">{% endif %}
+              Cost Structure
+              {% if object.originalauthor == request.user %}</a>{% endif %}
               <div class="acefield">{{ object.cost | safe }}</div>
             </td>
             <td colspan="5">
-              <a href="/canvas/{{ canvas.id }}/revenue">Revenue Streams</a>
+              {% if object.originalauthor == request.user %}<a href="/canvas/{{ canvas.id }}/revenue">{% endif %}
+              Revenue Streams
+              {% if object.originalauthor == request.user %}</a>{% endif %}
               <div class="acefield">{{ object.revenue | safe }}</div>
             </td>
           </tr>
