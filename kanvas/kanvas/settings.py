@@ -46,6 +46,8 @@ INSTALLED_APPS = (
     'app'
 )
 
+#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
 SITE_ID = 1
 # for SSO, LOGIN_REDIRECT_URL is a simpler approach than the GET parameter 'next'
 LOGIN_REDIRECT_URL = "/"

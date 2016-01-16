@@ -29,7 +29,7 @@
 
 {% block content %}
 
-<form action="" method="post" style="padding-top: 0.5cm;">{% csrf_token %}
+<form enctype="multipart/form-data" action="" method="post" style="padding-top: 0.5cm;">{% csrf_token %}
     {% block formblock %}{% endblock %}
     <input type="submit" value="Submit" />
 </form>

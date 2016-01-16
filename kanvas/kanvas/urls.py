@@ -30,8 +30,8 @@ urlpatterns = [
     url(r'canvas/add/$', create_canvas, name='canvas-add'),
     url(r'canvas/up/(?P<pk>[0-9]+)/$', voteup, name='canvas-up'),
     url(r'canvas/down/(?P<pk>[0-9]+)/$', votedown, name='canvas-down'),
-    url(r'canvas/(?P<pk>[0-9]+)/(?P<field>.+)/$', update_field, name='canvas-update'),
     url(r'canvas/(?P<pk>[0-9]+)/delete/$', CanvasDelete.as_view(), name='canvas-delete'),
+    url(r'canvas/(?P<pk>[0-9]+)/(?P<field>.+)/$', update_field, name='canvas-update'),
 
     url(r'^admin/', include(admin.site.urls)),
 

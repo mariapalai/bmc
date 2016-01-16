@@ -8,6 +8,10 @@ from django.shortcuts import render_to_response
 from app.forms import CanvasForm
 from django.contrib.auth.decorators import login_required
 from django.forms import modelform_factory, Textarea, ClearableFileInput
+from PIL import Image
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+
 
 def company(request, pk):
     """
@@ -82,6 +86,7 @@ def votedown(request, pk):
         obj.save()
     return HttpResponse(obj.downvotes)
 
+
 @login_required
 def create_canvas(request):
     """
@@ -95,6 +100,9 @@ def create_canvas(request):
         form = CanvasForm(request.POST)
         if form.is_valid():
             form.cleaned_data['originalauthor'] = request.user
+            data = ContentFile(request.FILES['logo'].file.read())
+            filename = request.FILES['logo'].name
+            default_storage.save(filename, data) # TODO: http://stackoverflow.com/questions/7970637/how-to-resize-the-new-uploaded-images-using-pil-before-saving
             obj = Canvas.objects.create(**form.cleaned_data)
             return HttpResponseRedirect("/canvas/%d" % obj.id)
     else:
