@@ -2,6 +2,10 @@
 form table tr th {
   text-align: left;
 }
+.responsive-image {
+  max-width:100%;
+  height:auto;
+}
 /** for app/canvas_detail.html */
 BODY {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

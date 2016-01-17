@@ -5,6 +5,7 @@
     <script src="/static/admin/js/canvas_list-michaelsoriano.js"></script>
     <script src="/static/admin/js/canvas_list-michaelsoriano.js"></script>
     <link rel="stylesheet" href="/static/admin/css/canvas_list-michaelsoriano.css">
+    <link href="/static/admin/css/custom.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -34,12 +35,13 @@
                 <li class="col-lg-2 col-md-4 col-sm-3 col-xs-4 col-xxs-12" data-bsp-li-index="0">
                     <!-- {% if canvas.logo %}-->
                     <a href="/canvas/{{ canvas.id }}">
-                        <img class="img-responsive" src="{{canvas.get_thumb}}">
                         <!--
-                        {% thumbnail canvas.logo.image "100x100" crop="center" as im %}
-                            <img src="{{ im.url }}" class="img-responsive" width="{{ im.width }}" height="{{ im.height }}">
-                        {% endthumbnail %}
+                        <img class="img-responsive" src="{{canvas.get_thumb}}">
                         -->
+                        {% thumbnail canvas.logo "400x400" as im %}
+                            <img class="img-responsive" src="{{ im.url }}">
+                        {% endthumbnail %}
+
                     </a>
                     <!-- {% endif %} -->
                     <div class="text">

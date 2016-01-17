@@ -30,7 +30,7 @@ class Canvas(models.Model):
         return "/canvas/%i/" % self.id
 
     def get_thumb(self):
-        im = get_thumbnail(self.logo, '100x100', crop='center', quality=99)
+        im = get_thumbnail(self.logo, '165x165', quality=99)
         if im:
             return im.url
         else:
