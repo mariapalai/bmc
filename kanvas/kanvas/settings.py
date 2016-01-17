@@ -42,9 +42,14 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
 
+    'sorl.thumbnail',
     'tinymce',
     'app'
 )
+
+THUMBNAIL_DEBUG= True
+#THUMBNAIL_PRESERVE_FORMAT = True
+# supported formats are: 'JPEG', 'PNG'
 
 #ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 

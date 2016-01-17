@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block content %}
+    {% load thumbnail %}
     <div class="row" style="text-align:center; border-bottom:1px dashed #ccc; padding:0 0 20px 0; margin-bottom:40px;">
         <div class="col-md-12" style="margin-top:10px;">
           <div class="row">
@@ -31,9 +32,16 @@
                 });
                 -->
                 <li class="col-lg-2 col-md-4 col-sm-3 col-xs-4 col-xxs-12" data-bsp-li-index="0">
+                    <!-- {% if canvas.logo %}-->
                     <a href="/canvas/{{ canvas.id }}">
-                        <img src="{{ canvas.logo.url }}" class="img-responsive">
+                        <img class="img-responsive" src="{{canvas.get_thumb}}">
+                        <!--
+                        {% thumbnail canvas.logo.image "100x100" crop="center" as im %}
+                            <img src="{{ im.url }}" class="img-responsive" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                        -->
                     </a>
+                    <!-- {% endif %} -->
                     <div class="text">
                       <div class="section">
                         <h3 style="padding: 0px; margin: 0px;">{{ canvas.company }}</h3>

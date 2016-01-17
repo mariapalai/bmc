@@ -82,7 +82,9 @@
           </div>
           <div class="col-md-6 text-right">
             <div class="col-md-12">
-              <a href="/canvas/{{ canvas.id }}/delete" class="btn btn-primary">Delete</a>
+              {% if object.originalauthor == request.user %}
+                <a href="/canvas/{{ canvas.id }}/delete" class="btn btn-primary">Delete</a>
+              {% endif %}
             </div>
           </div>
         </div>

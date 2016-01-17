@@ -102,6 +102,7 @@ def create_canvas(request):
             form.cleaned_data['originalauthor'] = request.user
             data = ContentFile(request.FILES['logo'].file.read())
             filename = request.FILES['logo'].name
+            form.cleaned_data['logo'] = filename
             default_storage.save(filename, data) # TODO: http://stackoverflow.com/questions/7970637/how-to-resize-the-new-uploaded-images-using-pil-before-saving
             obj = Canvas.objects.create(**form.cleaned_data)
             return HttpResponseRedirect("/canvas/%d" % obj.id)
@@ -112,6 +113,9 @@ def create_canvas(request):
 
 
 class CanvasList(ListView):
+    """
+    For debugging, check as_view() http://ccbv.co.uk/projects/Django/1.8/django.views.generic.list/ListView/
+    """
     model = Canvas
 
 
