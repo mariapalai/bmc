@@ -36,12 +36,13 @@
                     <!-- {% if canvas.logo %}-->
                     <a href="/canvas/{{ canvas.id }}">
                         <!--
-                        <img class="img-responsive" src="{{canvas.get_thumb}}">
+                        400 is stored by the solr-thumbnail
+                        and is big enough to be resized down by the browser due to '.img-responsive'
+                        network usage here can be optimized
                         -->
                         {% thumbnail canvas.logo "400x400" as im %}
                             <img class="img-responsive" src="{{ im.url }}">
                         {% endthumbnail %}
-
                     </a>
                     <!-- {% endif %} -->
                     <div class="text">
