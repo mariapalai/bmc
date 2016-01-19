@@ -1,5 +1,6 @@
+/*
 @import url(https://fonts.googleapis.com/css?family=Bree+Serif);
-
+*/
 body {
     background:#ebebeb;
 }
@@ -36,7 +37,7 @@ ul li.bspHasModal {
     text-align:right;
 }
 .text {
-    font-family: 'Bree Serif';
+    /*font-family: 'Bree Serif';*/
     color:#666;
     font-size:11px;
     margin-bottom:10px;
