@@ -7,11 +7,11 @@ if __name__ == "__main__":
 
     from django.core.management import execute_from_command_line
 
-    import logging
-    from sorl.thumbnail.log import ThumbnailLogHandler
-    logging.basicConfig(filename='django.log',level=logging.DEBUG)
-    handler = ThumbnailLogHandler()
-    handler.setLevel(logging.ERROR)
-    logging.getLogger('sorl.thumbnail').addHandler(handler)
+    # import logging
+    # from sorl.thumbnail.log import ThumbnailLogHandler
+    # logging.basicConfig(filename='django.log',level=logging.DEBUG)
+    # handler = ThumbnailLogHandler()
+    # handler.setLevel(logging.ERROR)
+    # logging.getLogger('sorl.thumbnail').addHandler(handler)
 
     execute_from_command_line(sys.argv)

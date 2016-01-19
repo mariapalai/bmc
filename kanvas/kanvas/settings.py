@@ -47,11 +47,14 @@ INSTALLED_APPS = (
     'app'
 )
 
-THUMBNAIL_DEBUG= True
-#THUMBNAIL_PRESERVE_FORMAT = True
-# supported formats are: 'JPEG', 'PNG'
-
-#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# THUMBNAIL_DEBUG= True
+import urllib2
+try:
+    response=urllib2.urlopen('http://www.google.com',timeout=2)
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+except urllib2.URLError as err:
+    print 'No internet connection was found, so email is not necessary to signup'
 
 SITE_ID = 1
 # for SSO, LOGIN_REDIRECT_URL is a simpler approach than the GET parameter 'next'
