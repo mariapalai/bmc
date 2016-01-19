@@ -13,6 +13,7 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver 
 visit: https://kanvas-mariapalai.c9users.io
+To rename the site, go to /admin at Sites section.
 
 Sending email is enabled with the following instructions:
 https://support.google.com/accounts/answer/6010255
