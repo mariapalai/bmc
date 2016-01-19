@@ -24,7 +24,7 @@ def company(request, pk):
         obj = Canvas.objects.get(pk=pk)
     except Canvas.DoesNotExist:
         raise Http404("Canvas does not exist")
-    return render_to_response('app/company_detail.html', {'obj': obj})
+    return render(request, 'app/company_detail.html', {'obj': obj})
 
 @login_required
 def update_field(request, pk, field):

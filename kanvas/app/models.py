@@ -23,8 +23,8 @@ class Canvas(models.Model):
 
     description = models.TextField(blank=True)
     logo = ImageField(upload_to='/media/', blank=True)
-    products = models.TextField(blank=True)
-    links = models.TextField(blank=True)
+    products = models.TextField(blank=True, default="Here you can add products of the company")
+    links = models.TextField(blank=True, default="Here you can add links about the company")
 
     def get_absolute_url(self):
         return "/canvas/%i/" % self.id

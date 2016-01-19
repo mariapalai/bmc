@@ -5,22 +5,21 @@
 {% endblock %}
 
 {% block content %}
+    {% load thumbnail %}
     <div class="section">
       <div class="container">
         <div class="row">
           <div class="col-md-12" style="margin-top:10px;">
             <ul class="media-list">
-              <li class="media">
+              <li class="media col-lg-2 col-md-4 col-sm-3 col-xs-4 col-xxs-12">
                 <a class="pull-left" href="/canvas/{{ obj.id }}/logo">
-                    <img class="media-object" src="{{ obj.logo.url }}">
+                    {% thumbnail obj.logo "400x400" as im %}
+                        <img class="img-responsive" src="{{ im.url }}">
+                    {% endthumbnail %}
                 </a>
                 <!-- might remove hegith and width -->
                 <div class="media-body">
                   <h3 class="media-heading">{{ obj.company }}</h3>
-                  <!-- start of voting buttons
-                  <button type="button" id="testBtn" class="btn btn-success glyphicon glyphicon-thumbs-up" data-loading-text="ajax-call-to-increase-vote">{{ obj.upvotes }}</button>
-                  <button type="button" id="testBtnDown" class="btn btn-success glyphicon glyphicon-thumbs-down" data-loading-text="ajax-call-to-decrease-vote">{{ obj.downvotes }}</button>
-                   end of voting buttons -->
                 </div>
               </li>
             </ul>
