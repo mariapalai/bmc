@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from app.models import Canvas
+from app.models import Canvas, Vote
 from django.views.generic.edit import DeleteView
 from django.core.urlresolvers import reverse_lazy
-from django.http import Http404, HttpResponseRedirect, HttpResponse
+from django.http import Http404, HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render_to_response
 from app.forms import CanvasForm
 from django.contrib.auth.decorators import login_required
@@ -58,34 +58,44 @@ def update_field(request, pk, field):
 
 
 def voteup(request, pk):
-    """
-    This is function and not a CreateView/Update as it points to a template with less fields
-    :param request:
-    :param pk: primary key of Canvas
-    :param field: which field to update
-    :return:
-    """
-    obj = Canvas.objects.get(id=pk)
-    if request.user.is_authenticated(): # decorator login_required would redirect
-        obj.upvotes = obj.upvotes + 1
-        obj.save()
-    return HttpResponse(obj.upvotes) # necessary for AJAX
+    return do(request, pk, 'upvotes')
 
 
 def votedown(request, pk):
+    return do(request, pk, 'downvotes')
+
+
+def do(request, pk, vote):
     """
-    This is function and not a CreateView/Update as it points to a template with less fields
     :param request:
     :param pk: primary key of Canvas
     :param field: which field to update
-    :return:
+    :return: response accessible with AJAX
     """
-    obj = Canvas.objects.get(id=pk)
-    if request.user.is_authenticated(): # decorator login_required would redirect
-        obj.downvotes = obj.downvotes + 1
-        obj.save()
-    return HttpResponse(obj.downvotes)
-
+    result = {}
+    if vote=='downvotes':
+        opposite = 'upvotes'
+        act = -1
+    else:
+        opposite = 'downvotes'
+        act = 1
+    obj = Canvas.objects.get(id=pk)   # decorator login_required would redirect
+    if request.user.is_authenticated():         # else do nothing
+        votes = Vote.objects.filter(voter=request.user, canvas=obj)
+        if votes:
+            if votes.filter(act=-act):           # else do nothing
+                setattr(obj, vote, getattr(obj, vote) + 1)
+                value = getattr(obj, opposite) - 1
+                setattr(obj, opposite, value)
+                obj.save()
+                votes.update(act=act)
+                result[opposite] = value
+        else:
+            setattr(obj, vote, getattr(obj, vote) + 1)
+            obj.save()
+            Vote.objects.create(voter=request.user, canvas=obj, act=act)
+    result[vote] = getattr(obj, vote)
+    return JsonResponse(result)
 
 @login_required
 def create_canvas(request):
@@ -100,10 +110,11 @@ def create_canvas(request):
         form = CanvasForm(request.POST)
         if form.is_valid():
             form.cleaned_data['originalauthor'] = request.user
-            data = ContentFile(request.FILES['logo'].file.read())
-            filename = request.FILES['logo'].name
-            form.cleaned_data['logo'] = filename
-            default_storage.save(filename, data)
+            if 'logo' in request.FILES:
+                data = ContentFile(request.FILES['logo'].file.read())
+                filename = request.FILES['logo'].name
+                form.cleaned_data['logo'] = filename
+                default_storage.save(filename, data)
             obj = Canvas.objects.create(**form.cleaned_data)
             return HttpResponseRedirect("/canvas/%d" % obj.id)
     else:

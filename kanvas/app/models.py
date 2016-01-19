@@ -29,9 +29,8 @@ class Canvas(models.Model):
     def get_absolute_url(self):
         return "/canvas/%i/" % self.id
 
-    def get_thumb(self):
-        im = get_thumbnail(self.logo, '165x165', quality=99)
-        if im:
-            return im.url
-        else:
-            return None # remember that sorl objects have url/width/height attributes
+
+class Vote(models.Model):
+    voter = models.ForeignKey(User)
+    canvas = models.ForeignKey(Canvas)
+    act = models.IntegerField(default=0) # +1 or -1    BooleanField?
