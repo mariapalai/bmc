@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles', ###
+    #'django.contrib.staticfiles', # commented as we use both static and media
     'django.contrib.sites',
     'allauth',
     'allauth.account',
