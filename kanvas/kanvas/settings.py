@@ -36,7 +36,6 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    #'django.contrib.staticfiles', # commented as we use both static and media
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -47,14 +46,19 @@ INSTALLED_APPS = (
     'app'
 )
 
-# THUMBNAIL_DEBUG= True
-import urllib2
-try:
-    response=urllib2.urlopen('http://www.google.com',timeout=2)
+# uncomment it only to run the following as we use both static and media
+# export COLLECT=True
+# python manage.py collectstatic --noinput
+# unset COLLECT
+if os.getenv("COLLECT"):
+    INSTALLED_APPS += ('django.contrib.staticfiles',)
+
+# when running the server you can first optionally set an environment variable EMAIL
+# export EMAIL=True # optionally
+# python manage.py runserver 0.0.0.0:8080
+if os.getenv("EMAIL"):
     ACCOUNT_EMAIL_REQUIRED = True
     ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-except urllib2.URLError as err:
-    print 'No internet connection was found, so email is not necessary to signup'
 
 SITE_ID = 1
 # for SSO, LOGIN_REDIRECT_URL is a simpler approach than the GET parameter 'next'
@@ -136,7 +140,6 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 TINYMCE_JS_URL = 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.3.2/jquery.tinymce.min.js'
 TINYMCE_DEFAULT_CONFIG = {
@@ -155,3 +158,5 @@ EMAIL_HOST_USER = 'maria.palai.ntua@gmail.com'
 EMAIL_HOST_PASSWORD = 'panteleimonas'
 EMAIL_PORT = 587
 EMAIL_SUBJECT_PREFIX='EPU NTUA'
+
+
