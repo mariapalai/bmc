@@ -10,7 +10,7 @@ git checkout db.sqlite3
 
 git pull
 
-pip install -r requirements.txt
+pip install -r requirements.txt # at cloud9 run it with sudo
 
 export COLLECT=True
 
