@@ -46,6 +46,11 @@ def update_field(request, pk, field):
         if form.is_valid():
             obj = Canvas.objects.get(id=pk)
             if obj.originalauthor == request.user: # more maintainable than dfunckt/django-rules
+                if 'logo' in request.FILES:
+                    data = ContentFile(request.FILES['logo'].file.read())
+                    filename = request.FILES['logo'].name
+                    form.cleaned_data['logo'] = filename
+                    default_storage.save(filename, data)
                 setattr(obj, field, form.cleaned_data[field])
                 obj.save()
                 return HttpResponseRedirect('/canvas/'+pk)
